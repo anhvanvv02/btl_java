@@ -53,7 +53,7 @@ public class MovieDAO {
     }
 
     public Movie getMovieById(int id) {
-        String query = "SELECT * FROM movies WHERE id = ?";
+        String query = "SELECT *, '' as showtimes FROM movies WHERE id = ?";
 
         try (Connection connection = DBConnection.getConnection();
                 PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -186,7 +186,14 @@ public class MovieDAO {
         movie.setImagePath(rs.getString("poster_url"));
         movie.setDirector(rs.getString("director"));
         movie.setReleaseDate(rs.getDate("release_date"));
-        movie.setShowtimes(rs.getString("showtimes") == null ? "" : rs.getString("showtimes"));
+        // movie.setShowtimes(rs.getString("showtimes").isBlank() || rs.getString("showtimes").isEmpty() ||  rs.getString("showtimes") == null ? "" : rs.getString("showtimes"));
+        if (hasColumn(rs, "showtimes")) {
+            String showtimes = rs.getString("showtimes");
+            movie.setShowtimes(showtimes == null || showtimes.isBlank() ? "" : showtimes);
+        } else {
+            movie.setShowtimes("");
+        }
+        
         // Handle actors as comma-separated string
         String actorsString = rs.getString("actors");
         if (actorsString != null && !actorsString.isEmpty()) {
@@ -197,4 +204,15 @@ public class MovieDAO {
 
         return movie;
     }
+    private boolean hasColumn(ResultSet rs, String columnName) throws SQLException {
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+        for (int i = 1; i <= columnCount; i++) {
+            if (columnName.equalsIgnoreCase(metaData.getColumnName(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
 }

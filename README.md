@@ -29,7 +29,7 @@ cd cinema-management
 - Chạy script SQL trong file `src/main/resources/database.sql`
 
 3. Cấu hình kết nối cơ sở dữ liệu:
-- Mở file `src/main/java/com/cinema/dao/DBConnection.java`
+- Mở file `src/main/java/com/cinema/util/DBConnection.java`
 - Chỉnh sửa các thông tin kết nối (nếu cần):
   ```java
   private static final String URL = "jdbc:mysql://localhost:3306/cinema_db";
@@ -55,10 +55,5 @@ mvn exec:java -Dexec.mainClass="com.cinema.ui.LoginFrame"
 - Quản lý phim: Thêm, sửa, xóa và xem danh sách phim
 - Quản lý phòng chiếu: Thêm, sửa, xóa và xem danh sách phòng chiếu
 - Quản lý vé: Bán vé và xem danh sách vé đã bán
-- Báo cáo: Xem báo cáo doanh thu và thống kê phim
 
-## Lưu ý
 
-- Chỉ tài khoản Admin mới có quyền quản lý nhân viên
-- Mật khẩu nên được thay đổi sau khi đăng nhập lần đầu
-- Sao lưu cơ sở dữ liệu định kỳ để đảm bảo an toàn dữ liệu

@@ -1,6 +1,7 @@
 package com.cinema.controller;
 
 import com.cinema.dao.TicketDAO;
+import com.cinema.model.Movie;
 import com.cinema.model.Ticket;
 import java.util.List;
 
@@ -26,7 +27,9 @@ public class TicketController {
     public Ticket getTicketById(int id) {
         return ticketDAO.getTicketById(id);
     }
-
+    public Movie getMovieById(int id) {
+        return ticketDAO.getMovieById(id);
+    }
     public List<Ticket> getAllTickets() {
         return ticketDAO.getAllTickets();
     }

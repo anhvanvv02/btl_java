@@ -64,7 +64,9 @@ public class TicketDAO {
         // TODO: Implement database operation
         return null;
     }
-
+    public Movie getMovieById(int id) {
+        return movieDAO.getMovieById(id);
+    }
     public List<Ticket> getAllTickets() {
         List<Ticket> tickets = new ArrayList<>();
         String sql = "SELECT * FROM tickets";
@@ -213,6 +215,7 @@ public class TicketDAO {
         ticket.setId(rs.getInt("id"));
 
         Movie movie = movieDAO.getMovieById(rs.getInt("movie_id"));
+        System.out.println("Movie: " + rs.getInt("movie_id"));
         ticket.setMovie(movie);
 
         Theater theater = theaterDAO.getTheaterById(rs.getInt("theater_id"));

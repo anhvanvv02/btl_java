@@ -27,20 +27,7 @@ CREATE TABLE IF NOT EXISTS movies (
     actors TEXT NOT NULL
 );
 
--- Add poster_url column if it doesn't exist
-ALTER TABLE movies ADD COLUMN IF NOT EXISTS poster_url VARCHAR(500);
 
--- Add actors column if it doesn't exist
-ALTER TABLE movies ADD COLUMN IF NOT EXISTS actors TEXT NOT NULL DEFAULT '';
-
--- Modify release_date column to DATETIME if it exists
-ALTER TABLE movies MODIFY COLUMN release_date DATETIME NOT NULL;
-
--- Modify actors column to TEXT NOT NULL if it exists
-ALTER TABLE movies MODIFY COLUMN actors TEXT NOT NULL;
-
--- Drop movie_actors table if it exists
-DROP TABLE IF EXISTS movie_actors;
 
 -- Create theaters table
 CREATE TABLE IF NOT EXISTS theaters (
@@ -68,6 +55,52 @@ CREATE TABLE IF NOT EXISTS tickets (
     FOREIGN KEY (employee_id) REFERENCES employees(id)
 );
 
+CREATE TABLE IF NOT EXISTS movies (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    genre VARCHAR(100),
+    duration INT,
+    image_path VARCHAR(255),
+    director VARCHAR(100),
+    release_date VARCHAR(20),
+    language VARCHAR(50),
+    rating VARCHAR(10)
+); 
+
+-- Drop existing table if exists
+DROP TABLE IF EXISTS showtimes;
+
+-- Create showtimes table
+CREATE TABLE IF NOT EXISTS showtimes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    movie_id INT NOT NULL,
+    theater_id INT NOT NULL,
+    show_datetime DATETIME NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    status BOOLEAN DEFAULT true,
+    FOREIGN KEY (movie_id) REFERENCES movies(id),
+    FOREIGN KEY (theater_id) REFERENCES theaters(id)
+);
+
+-- Add indexes for better performance
+CREATE INDEX idx_movie_id ON showtimes(movie_id);
+CREATE INDEX idx_theater_id ON showtimes(theater_id);
+CREATE INDEX idx_show_datetime ON showtimes(show_datetime); 
+-- Add poster_url column if it doesn't exist
+ALTER TABLE movies ADD COLUMN IF NOT EXISTS poster_url VARCHAR(500);
+
+-- Add actors column if it doesn't exist
+ALTER TABLE movies ADD COLUMN IF NOT EXISTS actors TEXT NOT NULL DEFAULT '';
+
+-- Modify release_date column to DATETIME if it exists
+ALTER TABLE movies MODIFY COLUMN release_date DATETIME NOT NULL;
+
+-- Modify actors column to TEXT NOT NULL if it exists
+ALTER TABLE movies MODIFY COLUMN actors TEXT NOT NULL;
+
+-- Drop movie_actors table if it exists
+DROP TABLE IF EXISTS movie_actors;
 -- Insert default admin account
 INSERT INTO employees (name, phone, email, address, position, username, password)
 VALUES ('Admin', '0123456789', 'admin@cinema.com', 'Cinema Address', 'Admin', 'admin', 'admin123'); 

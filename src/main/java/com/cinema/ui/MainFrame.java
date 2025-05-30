@@ -60,7 +60,7 @@ public class MainFrame extends JFrame {
         JPanel employeePanel = new EmployeePanel();
         JPanel theaterPanel = new TheaterPanel();
         JPanel ticketPanel = new TicketPanel(currentEmployee);
-        JPanel reportPanel = new ReportPanel();
+        // JPanel reportPanel = new ReportPanel();
         JPanel showtimePanel = new ShowtimePanel();
         JPanel ticketManagementPanel = new TicketManagementPanel();
 
@@ -69,7 +69,7 @@ public class MainFrame extends JFrame {
         mainPanel.add(moviePanel, "MOVIES");
         mainPanel.add(theaterPanel, "THEATERS");
         mainPanel.add(ticketPanel, "TICKETS");
-        mainPanel.add(reportPanel, "REPORTS");
+        // mainPanel.add(reportPanel, "REPORTS");
         mainPanel.add(showtimePanel, "SHOWTIMES");
         mainPanel.add(ticketManagementPanel, "TICKET_MANAGEMENT");
         
@@ -81,7 +81,7 @@ public class MainFrame extends JFrame {
         reloadablePanels.put("EMPLOYEES", (IReload) employeePanel);
         reloadablePanels.put("THEATERS", (IReload) theaterPanel);
         reloadablePanels.put("TICKETS", (IReload) ticketPanel);
-        reloadablePanels.put("REPORTS", (IReload) reportPanel);
+        // reloadablePanels.put("REPORTS", (IReload) reportPanel);
         reloadablePanels.put("SHOWTIMES", (IReload) showtimePanel);
         reloadablePanels.put("TICKET_MANAGEMENT", (IReload) ticketManagementPanel);
         
