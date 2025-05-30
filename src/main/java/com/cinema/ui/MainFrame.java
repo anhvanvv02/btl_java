@@ -131,9 +131,9 @@ public class MainFrame extends JFrame {
         addMenuItem("Quản Lý Rạp", "frame.png", "THEATERS");
         addMenuItem("Quản Lý Xuất Chiếu", "calendar.png", "SHOWTIMES");
         addMenuItem("Bán Vé", "ticket.png", "TICKETS");
-        addMenuItem("Danh Sách Vé", "ticket.png", "TICKETS");
-        addMenuItem("Báo Cáo Doanh Thu", "data-analysis.png", "REPORTS");
-        addMenuItem("Báo Cáo Phim", "data-analysis.png", "REPORTS");
+        // addMenuItem("Danh Sách Vé", "ticket.png", "TICKETS");
+        // addMenuItem("Báo Cáo Doanh Thu", "data-analysis.png", "REPORTS");
+        // addMenuItem("Báo Cáo Phim", "data-analysis.png", "REPORTS");
         addMenuItem("Quản Lý Vé Đã Bán", "ticket.png", "TICKET_MANAGEMENT");
 
         // Add separator before system menu
